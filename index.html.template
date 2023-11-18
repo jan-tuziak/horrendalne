@@ -7,5 +7,6 @@
 </head>
 <body>
     {{date}}
+    hello :)
 </body>
 </html>
