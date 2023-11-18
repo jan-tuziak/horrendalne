@@ -12,6 +12,7 @@ namespace Horrendalne
         {
             var indexGenerator = new IndexHtmlGenerator();
             indexGenerator.GenerateIndexHtml();
+            Console.WriteLine("Website generated successfilly");
         }
 
         
