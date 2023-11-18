@@ -8,5 +8,6 @@
 <body>
     {{date}}
     hello xD
+    If you can read this, deployment works
 </body>
 </html>
