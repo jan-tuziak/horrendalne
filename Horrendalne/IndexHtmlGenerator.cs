@@ -14,8 +14,8 @@ namespace Horrendalne
         {
             int count = GetNumberOfUpwardsFolders();
 
-            IndexHtmlPath = string.Concat(Enumerable.Repeat("../", count)) + "index.html";
-            IndexHtmlTemplatePath = IndexHtmlPath + ".template";
+            IndexHtmlPath = string.Concat(Enumerable.Repeat("../", count)) + "docs/index.html";
+            IndexHtmlTemplatePath = string.Concat(Enumerable.Repeat("../", count)) + "index.html.template";
         }
 
         public void GenerateIndexHtml()
