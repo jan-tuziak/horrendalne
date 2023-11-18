@@ -29,10 +29,11 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - uses: actions/checkout@v4
+      with:
+        ref: live-website
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
       with:
-        author_name: Website Generator
-        author_email: jan.tuziak@gmail.com
-        message: 'Generating new website'
+        message: 'Generating new live website'
         add: '*.html'
