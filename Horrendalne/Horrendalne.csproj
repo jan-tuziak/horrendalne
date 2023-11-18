@@ -10,7 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.github\workflows\build-website.yml" Link="Workflows\build-website.yml" />
+    <Content Include="..\index.html" Link="index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.github\workflows\deploy-live-website.yml" Link="Workflows\deploy-live-website.yml" />
     <None Include="..\index.html.template" Link="index.html.template" />
   </ItemGroup>
 
