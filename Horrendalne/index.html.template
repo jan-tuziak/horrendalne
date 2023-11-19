@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>horrendalne</title>
+    <style>
+        body  {
+            text-align: center;
+            font-family: Consolas;
+        }
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        .diag-button {
+            background-color: #A9A9A9; /* Grey */
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 12px;
+        }
+
+        div {
+            white-space: pre-wrap;
+        }   
+
+        /* Table Styling */
+        .overview {
+            border-collapse: collapse;
+            width: 5%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .overview td, .overview th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .overview tr:nth-child(even){background-color: #f2f2f2;}
+
+        .overview tr:hover {background-color: #ddd;}
+
+        .overview th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    {{date}}
-    hello w Niedziele
+    <h1>horrendalne</h1>
+    <h2>Czyli oferty pracy z FAANG w Polsce</h2>
+    <p>{{date}}</p>
 </body>
 </html>
