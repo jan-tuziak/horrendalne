@@ -8,7 +8,7 @@
         {
             int count = GetNumberOfUpwardsFolders();
 
-            IndexHtmlPath = string.Concat(Enumerable.Repeat("../", count)) + "index.html";
+            IndexHtmlPath = string.Concat(Enumerable.Repeat("../", count)) + "output/index.html";
             IndexHtmlTemplatePath = string.Concat(Enumerable.Repeat("../", count)) + "index.html.template";
         }
 
