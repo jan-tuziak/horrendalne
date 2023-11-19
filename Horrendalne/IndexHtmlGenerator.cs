@@ -2,14 +2,19 @@
 {
     public class IndexHtmlGenerator
     {
+        public string MainFolderPath { get; private set; }
+        public string OutputFolderPath { get; private set; }
         public string IndexHtmlTemplatePath { get; private set; }
         public string IndexHtmlPath { get; private set; }
         public IndexHtmlGenerator()
         {
             int count = GetNumberOfUpwardsFolders();
+            MainFolderPath = string.Concat(Enumerable.Repeat("../", count));
+            OutputFolderPath = MainFolderPath + "output";
+            IndexHtmlPath = OutputFolderPath + "/index.html";
+            IndexHtmlTemplatePath = MainFolderPath + "index.html.template";
 
-            IndexHtmlPath = string.Concat(Enumerable.Repeat("../", count)) + "output/index.html";
-            IndexHtmlTemplatePath = string.Concat(Enumerable.Repeat("../", count)) + "index.html.template";
+            Directory.CreateDirectory(OutputFolderPath);
         }
 
         public void GenerateIndexHtml()
