@@ -11,9 +11,6 @@
 
   <ItemGroup>
     <None Include="..\.github\workflows\deploy-live-website.yml" Link="Workflows\deploy-live-website.yml" />
-    <None Include="..\index.html.template" Link="index.html.template">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +24,12 @@
 
   <ItemGroup>
     <Folder Include="Workflows\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="index.html.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
