@@ -2,19 +2,16 @@
 {
     public class IndexHtmlGenerator
     {
-        public string MainFolderPath { get; private set; }
-        public string OutputFolderPath { get; private set; }
+        public string DistFolderPath { get; private set; }
         public string IndexHtmlTemplatePath { get; private set; }
         public string IndexHtmlPath { get; private set; }
         public IndexHtmlGenerator()
         {
-            int count = GetNumberOfUpwardsFolders();
-            MainFolderPath = string.Concat(Enumerable.Repeat("../", count));
-            OutputFolderPath = MainFolderPath + "output";
-            IndexHtmlPath = OutputFolderPath + "/index.html";
-            IndexHtmlTemplatePath = MainFolderPath + "index.html.template";
+            DistFolderPath = "dist";
+            IndexHtmlPath = DistFolderPath + "/index.html";
+            IndexHtmlTemplatePath = "index.html.template";
 
-            Directory.CreateDirectory(OutputFolderPath);
+            Directory.CreateDirectory(DistFolderPath);
         }
 
         public void GenerateIndexHtml()
@@ -30,35 +27,6 @@
         {
             template = template.Replace("{{date}}", DateTime.Now.ToString());
             return template;
-        }
-
-        private static int GetNumberOfUpwardsFolders()
-        {
-            var currentDir = Directory.GetCurrentDirectory();
-            var count = -1;
-            for (int i = 1; i < 6; i++)
-            {
-                currentDir = Directory.GetParent(currentDir)?.FullName;
-                if (currentDir == null)
-                {
-                    Console.WriteLine("Reached root folder.");
-                    break;
-                }
-
-                var files = Directory.EnumerateFiles(currentDir, "*.sln", SearchOption.TopDirectoryOnly);
-
-                if (files.Count() > 0)
-                {
-                    count = i;
-                }
-            }
-
-            if (count < 0)
-            {
-                throw new Exception("Cannot find root folder");
-            }
-
-            return count;
         }
     }
 }
