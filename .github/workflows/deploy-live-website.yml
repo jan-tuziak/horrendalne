@@ -18,47 +18,74 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Generate live website
-    runs-on: ubuntu-latest
+  # build:
+  #   name: Generate live website
+  #   runs-on: ubuntu-latest
 
-    permissions:
-        contents: write
+  #   permissions:
+  #       contents: write
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v9
-      with:
-        message: 'Generating new live website'
-        add: '*.html'
-  # Single deploy job since we're just deploying
-  deploy:
-    name: Deploy live website
-    needs: build
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   - name: Setup .NET
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: 6.0.x
+  #   - name: Restore dependencies
+  #     run: dotnet restore
+  #   - name: Build
+  #     run: dotnet build --no-restore
+  #   - name: Test
+  #     run: dotnet test --no-build --verbosity normal
+  #   - name: Commit changes
+  #     uses: EndBug/add-and-commit@v9
+  #     with:
+  #       message: 'Generating new live website'
+  #       add: '*.html'
+  # # Single deploy job since we're just deploying
+  # deploy:
+  #   name: Deploy live website
+  #   needs: build
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v3
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v2
+  #       with:
+  #         path: './output'
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v2
+  build-and-deploy:
+    name: Build and deploy live website
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+           dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test (Generate Website)
+        run: dotnet test --no-build --verbosity normal
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          # Upload entire repository
           path: './output'
       - name: Deploy to GitHub Pages
         id: deployment
