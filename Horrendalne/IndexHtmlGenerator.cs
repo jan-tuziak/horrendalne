@@ -1,12 +1,17 @@
-﻿namespace Horrendalne
+﻿using Horrendalne.Pages;
+
+namespace Horrendalne
 {
     public class IndexHtmlGenerator
     {
         public string DistFolderPath { get; private set; }
         public string IndexHtmlTemplatePath { get; private set; }
         public string IndexHtmlPath { get; private set; }
-        public IndexHtmlGenerator()
+        private List<Job> Jobs { get; set; }
+
+        public IndexHtmlGenerator(List<Job> jobs)
         {
+            Jobs = jobs;
             DistFolderPath = "dist";
             IndexHtmlPath = DistFolderPath + "/index.html";
             IndexHtmlTemplatePath = "index.html.template";
