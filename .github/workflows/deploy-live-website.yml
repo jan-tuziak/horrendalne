@@ -36,7 +36,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Ensure browsers are installed for Playwright
-        run: pwsh bin/Debug/net6.0/playwright.ps1 install --with-deps
+        run: pwsh bin/Debug/net7.0/playwright.ps1 install --with-deps
       - name: Test (Generate Website)
         run: dotnet test --no-build --verbosity normal
       - name: Setup Pages
