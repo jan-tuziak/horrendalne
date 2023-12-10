@@ -34,9 +34,9 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build --no-restore --configuration Release
       - name: Ensure browsers are installed for Playwright
-        run: pwsh ./Horrendalne/bin/Debug/net7.0/playwright.ps1 install --with-deps
+        run: pwsh ./Horrendalne/bin/Release/net7.0/playwright.ps1 install --with-deps
       - name: Test (Generate Website)
         run: dotnet test --no-build --verbosity normal
       - name: Setup Pages
@@ -44,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './Horrendalne/bin/Debug/net7.0/dist'
+          path: './Horrendalne/bin/Release/net7.0/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
