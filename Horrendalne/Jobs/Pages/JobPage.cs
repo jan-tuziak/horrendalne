@@ -20,6 +20,16 @@ namespace Horrendalne.Pages
             CompanyName = companyName;
         }
 
-        public abstract Task<List<Job>> GetJobs();
+        public async Task<List<Job>> GetJobs()
+        {
+            await Page.GotoAsync(Url);
+
+            var jobs = await ScrapeJobs();
+            await Console.Out.WriteLineAsync($"Scraped {jobs.Count} jobs from {CompanyName}");
+
+            return jobs;
+        }
+
+        protected abstract Task<List<Job>> ScrapeJobs();
     }
 }

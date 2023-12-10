@@ -18,13 +18,11 @@ namespace Horrendalne
 
         public JobListGenerator(IPage Page)
         {
-            var jobUrlsFileName = @"jobUrls.json";
-            File.Exists(jobUrlsFileName).Should().BeTrue("Check if \"jobUrls.json\" file exists.");
-            var jobPagesUrls = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(jobUrlsFileName));
-            jobPagesUrls.Should().NotBeNullOrEmpty("Check \"jobUrls.json\" file. Read zero urls from it.");
-
             _page = Page;
-            _jobPages = JobPageMapper.MapJobPage(_page, jobPagesUrls);
+            _jobPages = new List<JobPage>()
+            {
+                new GoogleJobPage(_page)
+            };
         }
 
         public async Task<List<Job>> GenerateJobList()
@@ -35,7 +33,7 @@ namespace Horrendalne
             {
                 jobs.AddRange(await jobPage.GetJobs());
             }
-
+            await Console.Out.WriteLineAsync($"Scraped {jobs.Count} jobs in total");
             return jobs;
         }
     }

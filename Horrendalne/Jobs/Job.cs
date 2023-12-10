@@ -1,10 +1,9 @@
 ﻿namespace Horrendalne.Pages
 {
-    public class Job
+    public record Job
     {
-        public readonly string Title;
-        public readonly string Description;
-        public readonly string Url;
-        public readonly string Company;
+        public string Title;
+        public string Url;
+        public string Company;
     }
 }

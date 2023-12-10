@@ -68,5 +68,6 @@
     <h1>horrendalne</h1>
     <h2>Czyli oferty pracy z FAANG w Polsce</h2>
     <p>{{date}}</p>
+    <div>{{jobs}}</div>
 </body>
 </html>

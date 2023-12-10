@@ -1,4 +1,5 @@
 ﻿using Horrendalne.Pages;
+using Newtonsoft.Json;
 
 namespace Horrendalne
 {
@@ -22,10 +23,17 @@ namespace Horrendalne
         public void GenerateIndexHtml()
         {
             string template = File.ReadAllText(IndexHtmlTemplatePath);
-
+            template = InsertJobs(template);
             var indexText = ReplaceVariablesInTemplate(template);
 
             File.WriteAllText(IndexHtmlPath, indexText);
+        }
+
+        private string InsertJobs(string template)
+        {
+            var jobsHtml = new List<string>();
+            Jobs.ForEach(job => jobsHtml.Add($"<a href={job.Url}>{job.Title} @ {job.Company}</a>"));
+            return template.Replace("{{jobs}}", string.Join("</br>", jobsHtml));
         }
 
         private string ReplaceVariablesInTemplate(string template)
