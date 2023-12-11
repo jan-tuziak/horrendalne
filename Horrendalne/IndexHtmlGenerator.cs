@@ -32,8 +32,8 @@ namespace Horrendalne
         private string InsertJobs(string template)
         {
             var jobsHtml = new List<string>();
-            Jobs.ForEach(job => jobsHtml.Add($"<a href={job.Url}>{job.Title} @ {job.Company}</a>"));
-            return template.Replace("{{jobs}}", string.Join("</br>", jobsHtml));
+            Jobs.ForEach(job => jobsHtml.Add($"<tr><td>{job.Company}</td><td><a href={job.Url}>{job.Title}</a></td></tr>"));
+            return template.Replace("{{jobs}}", string.Join(Environment.NewLine, jobsHtml));
         }
 
         private string ReplaceVariablesInTemplate(string template)
